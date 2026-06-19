@@ -42,8 +42,12 @@ working, then make the *judgment* visible. Run order below; timings are a guide.
   that number lead.
 
 ## 4. Optional — prove it's real (~2 min)
-- Run `python -m pipeline.orchestrator --account ACME-014` live. ~10–20s. Show the terminal
-  trace, then refresh the dashboard. Only do this if the room wants it — don't risk the clock.
+- Run `python -m pipeline.orchestrator --account ACME-013 --demo` live (~30s, writes NOTHING to
+  the DB — your portfolio is safe). Watch it pause on each real API call — that latency is the
+  proof it's live — then read the drafted email, the reply, the analysis, the deterministic gate
+  verdict, and its self-grade vs the hidden truth. Frame it as "watch it work and grade itself,"
+  not "watch it auto-handle" (the verdict can vary run-to-run). Only if the room wants it — don't
+  risk the clock.
 
 ## 5. Defend the choices (~5 min) — `DECISIONS.md`
 Have crisp answers ready (they're all in DECISIONS):

@@ -13,10 +13,10 @@
 ## Pre-flight (morning of)
 - [ ] **Close DBeaver** — it locks `data/renewal.duckdb` and breaks the dashboard read.
 - [ ] `streamlit run app/dashboard.py` → click all 3 tabs; open drill-downs for **ACME-004 / ACME-019 / ACME-012**; confirm the emails render.
-- [ ] If running live: rehearse `python -m pipeline.orchestrator --account ACME-013` 2–3× → confirm it lands `auto` each time.
+- [ ] Rehearse the **live trace** 2–3×: `python -m pipeline.orchestrator --account ACME-013 --demo` (writes nothing to the DB; ~25–35s). Frame it as "watch it work and grade itself," not "watch it auto-handle" — the verdict can vary run-to-run. **ACME-012** is the most impressive live run (the E7 upsell) *if* it's stable in rehearsal; **ACME-006/003** give a 100%-repeatable verdict (opt-out / bounce).
 - [ ] `docs/apa_flow.md` preview open; VS Code on `agents/reliability.py`.
 - [ ] `ANTHROPIC_API_KEY` set (only needed for a live run).
-- [ ] **Freeze the DB you rehearsed on** — don't re-run the full batch right before the call (live LLM = numbers move).
+- [ ] **Freeze the DB you rehearsed on** — don't re-run the *full batch* right before the call (live LLM = numbers move). The `--demo` single-account run is safe: it writes nothing.
 
 ---
 
@@ -104,7 +104,7 @@ their comparison.
 
 ## Commands
 ```
-python -m pipeline.orchestrator                      # full batch -> data/renewal.duckdb
-python -m pipeline.orchestrator --account ACME-013   # robust live auto-handle
-streamlit run app/dashboard.py                       # the report
+python -m pipeline.orchestrator                            # full batch -> data/renewal.duckdb (once, before)
+python -m pipeline.orchestrator --account ACME-013 --demo  # LIVE verbose trace, ~30s, writes NOTHING
+streamlit run app/dashboard.py                             # the report (the main artifact)
 ```
